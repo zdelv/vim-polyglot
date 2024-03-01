@@ -140,12 +140,13 @@ syn match   pythonDot        '\.' display containedin=pythonDottedName
 " Comments
 "
 
-syn match   pythonComment       '#.*$' display contains=pythonTodo,@Spell
+syn match   pythonComment       '#.*$' display contains=pythonTodo,pythonDebug,@Spell
 if !s:Enabled('g:python_highlight_file_headers_as_comments')
     syn match   pythonRun         '\%^#!.*$'
     syn match   pythonCoding      '\%^.*\%(\n.*\)\?#.*coding[:=]\s*[0-9A-Za-z-_.]\+.*$'
 endif
 syn keyword pythonTodo          TODO FIXME XXX contained
+syn keyword pythonDebug         DEBUG TEMP NOMERGE DONOTMERGE contained
 
 "
 " Errors
@@ -453,6 +454,7 @@ if v:version >= 508 || !exists('did_python_syn_inits')
         HiLink pythonRun              Special
     endif
     HiLink pythonTodo             Todo
+    hi pythonDebug guibg=Red guifg=white term=bold
 
     HiLink pythonError            Error
     HiLink pythonIndentError      Error
